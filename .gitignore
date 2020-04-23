@@ -1,0 +1,7 @@
+.vscode
+bin
+include/__pycache__/
+lib*
+conf*
+*.sqlite
+*.cfg
