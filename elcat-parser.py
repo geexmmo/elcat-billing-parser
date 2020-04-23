@@ -66,12 +66,16 @@ def Check_if_parsing_files():
         if args.parse_uniq != None:
             dic=Config_parser(args.parse_file, args.parse_uniq)
             logging.info("Parsing done, found %s accounts with keyword %s", len(dic), args.parse_uniq)
+            for i in dic.keys():
+                 Sqlite_insert(dbfilename, i,dic.get(i)[0],dic.get(i)[1])
+            exit(0)
         else:
             logging.info("Parsing, unique keyword defaulted to 'fromdomain'.")
             dic=Config_parser(args.parse_file, defaultuniq)
             logging.info("Parsing done, found %s accounts", len(dic))
             for i in dic.keys():
                  Sqlite_insert(dbfilename, i,dic.get(i)[0],dic.get(i)[1])
+            exit(0)
     else:
         if args.create_db == False and args.add_account == None: logging.info("No flags specified, running checks on accounts that are already in database.")
 
